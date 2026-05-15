@@ -25,6 +25,7 @@ export default function ChatPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [streamingContent, setStreamingContent] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
+  const [language, setLanguage] = useState<"id" | "en">("id");
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const abortControllerRef = useRef<AbortController | null>(null);
 
@@ -273,6 +274,13 @@ export default function ChatPage() {
             <SubjectSelector value={subject} onChange={handleSubjectChange} disabled={isLoading} />
             <ModeSelector value={mode} onChange={setMode} />
             <ClearChatButton onClear={handleClearChat} disabled={messages.length === 0 && !streamingContent} />
+            <button
+              onClick={() => setLanguage(language === "id" ? "en" : "id")}
+              className="px-3 py-1.5 border border-gray-300 dark:border-gray-600 rounded-lg text-xs font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-700 dark:text-gray-200"
+              title="Ganti Bahasa / Change Language"
+            >
+              {language === "id" ? "🇮🇩 ID" : "🇬🇧 EN"}
+            </button>
             <DarkModeToggle />
           </div>
         </header>
@@ -325,6 +333,7 @@ export default function ChatPage() {
             streamingContent={streamingContent}
             subject={subject}
             mode={mode}
+            language={language}
             onSuggestedQuestion={handleSendMessage}
             onRegenerate={handleRegenerate}
           />
