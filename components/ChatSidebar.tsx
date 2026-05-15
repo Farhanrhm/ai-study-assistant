@@ -82,15 +82,15 @@ export default function ChatSidebar({
       {/* Sidebar panel */}
       <aside
         aria-label="Chat history"
-        className={`fixed inset-y-0 left-0 z-30 flex w-72 flex-col border-r border-gray-200 bg-white shadow-xl transition-transform duration-300 lg:relative lg:translate-x-0 lg:shadow-none ${
-          isOpen ? "translate-x-0" : "-translate-x-full"
+        className={`fixed inset-y-0 left-0 z-30 flex w-72 flex-col border-r border-gray-200 bg-white shadow-xl transition-all duration-300 dark:border-gray-800 dark:bg-gray-900 lg:relative lg:shadow-none ${
+          isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0 lg:-ml-72"
         }`}
       >
         {/* Sidebar header */}
-        <div className="flex items-center justify-between border-b border-gray-100 px-4 py-4">
+        <div className="flex items-center justify-between border-b border-gray-100 px-4 py-4 dark:border-gray-800">
           <div className="flex items-center gap-2">
             <span className="text-lg" aria-hidden="true">🎓</span>
-            <span className="font-bold text-gray-900">Study History</span>
+            <span className="font-bold text-gray-900 dark:text-gray-100">Study History</span>
           </div>
           <button
             type="button"
@@ -138,8 +138,8 @@ export default function ChatSidebar({
                     <div
                       className={`group relative flex cursor-pointer flex-col gap-1 rounded-xl px-3 py-2.5 transition-colors ${
                         isActive
-                          ? "bg-indigo-50 ring-1 ring-indigo-200"
-                          : "hover:bg-gray-50"
+                          ? "bg-indigo-50 ring-1 ring-indigo-200 dark:bg-indigo-900/30 dark:ring-indigo-800"
+                          : "hover:bg-gray-50 dark:hover:bg-gray-800/50"
                       }`}
                       onClick={() => !isEditing && onSelectSession(session.id)}
                       onMouseEnter={() => setHoveredId(session.id)}
@@ -172,7 +172,7 @@ export default function ChatSidebar({
                             className="w-full rounded border border-indigo-300 bg-white px-1.5 py-0.5 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-400"
                           />
                         ) : (
-                          <span className={`line-clamp-2 text-sm font-medium ${isActive ? "text-indigo-900" : "text-gray-800"}`}>
+                          <span className={`line-clamp-2 text-sm font-medium ${isActive ? "text-indigo-900 dark:text-indigo-100" : "text-gray-800 dark:text-gray-200"}`}>
                             {session.title}
                           </span>
                         )}
