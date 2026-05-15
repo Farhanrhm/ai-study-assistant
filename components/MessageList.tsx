@@ -25,10 +25,14 @@ export default function MessageList({
   onSuggestedQuestion,
   onRegenerate,
 }: MessageListProps) {
-  const bottomRef = useRef<HTMLDivElement>(null);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    scrollToBottom();
   }, [messages, isLoading, streamingContent]);
 
   const lastAssistantIndex = messages.reduce(
@@ -58,8 +62,6 @@ export default function MessageList({
               </p>
             </div>
             <SuggestedQuestions
-              subject={subject}
-              mode={mode}
               onSelect={onSuggestedQuestion}
             />
           </div>
@@ -103,7 +105,7 @@ export default function MessageList({
           </div>
         )}
 
-        <div ref={bottomRef} aria-hidden="true" />
+        <div ref={messagesEndRef} aria-hidden="true" />
       </div>
     </div>
   );
