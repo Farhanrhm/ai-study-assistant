@@ -85,6 +85,19 @@ export default function ChatPage() {
         }),
       });
 
+      if (response.status === 429) {
+        const errorData = await response.json();
+        const rateLimitMessage: Message = {
+          id: crypto.randomUUID(),
+          role: "assistant",
+          content: `⚠️ **Peringatan Limit:** ${errorData.error ?? "Terlalu banyak permintaan."} Mohon tunggu beberapa saat sebelum bertanya lagi.`,
+          timestamp: new Date(),
+        };
+        updateSessionMessages(sessionId, [...messagesToSend, rateLimitMessage]);
+        setIsLoading(false);
+        return;
+      }
+
       if (!response.ok) {
         const data = await response.json();
         const errorMessage =
