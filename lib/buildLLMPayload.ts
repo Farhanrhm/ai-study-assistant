@@ -34,6 +34,6 @@ export function buildLLMPayload(
     ],
     temperature: 0.7,
     // Google AI Studio OpenAI-compatible endpoint uses max_completion_tokens
-    max_completion_tokens: 1024,
+    max_completion_tokens: 4096,
   };
 }
