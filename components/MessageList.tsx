@@ -12,6 +12,7 @@ interface MessageListProps {
   streamingContent?: string;
   subject: Subject;
   mode: Mode;
+  language: "id" | "en";
   onSuggestedQuestion: (q: string) => void;
   onRegenerate: () => void;
 }
@@ -22,6 +23,7 @@ export default function MessageList({
   streamingContent,
   subject,
   mode,
+  language,
   onSuggestedQuestion,
   onRegenerate,
 }: MessageListProps) {
@@ -62,6 +64,8 @@ export default function MessageList({
               </p>
             </div>
             <SuggestedQuestions
+              subject={subject}
+              language={language}
               onSelect={onSuggestedQuestion}
             />
           </div>
